@@ -1,7 +1,10 @@
 package jm.task.core.jdbc;
 
+import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,10 +16,19 @@ public class Main {
         userService.saveUser("Bob", "Smith", (byte) 40);
         userService.saveUser("Alice", "Johnson", (byte) 35);
 
-        userService.removeUserById(1);
+        List<User> users = userService.getAllUsers();
+        System.out.println("Таблица пользователей: ");
+        users.forEach(System.out::println);
 
         userService.cleanUsersTable();
 
         userService.dropUsersTable();
+
+        users = userService.getAllUsers();
+        if (users.isEmpty()) {
+            System.out.println("Таблица пользователей пуста или не существует.");
+        } else {
+            users.forEach(System.out::println);
+        }
     }
 }
