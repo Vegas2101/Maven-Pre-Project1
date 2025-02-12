@@ -10,9 +10,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+
 public class Util {
     // реализуйте настройку соеденения с БД
-    private static final String Driver = "com.mysql.jdbc.Driver";
+    private static final String DRIVER = "com.mysql.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/1example";
     private static final String USER = "root";
     private static final String PASSWORD = "gfhjkm100901.";
@@ -20,7 +21,7 @@ public class Util {
     public static Connection getConnection() {
         Connection connection = null;
         try {
-            Class.forName(Driver);
+            Class.forName(DRIVER);
             connection= DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -36,14 +37,13 @@ public class Util {
             Configuration conf = new Configuration();
 
             Properties settings = new Properties();
-            settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
-            settings.put(Environment.URL, "jdbc:mysql://localhost:3306/hibernateex1");
-            settings.put(Environment.USER, "root");
-            settings.put(Environment.PASS, "gfhjkm100901.");
+            settings.put(Environment.DRIVER, DRIVER);
+            settings.put(Environment.URL, URL);
+            settings.put(Environment.USER, USER);
+            settings.put(Environment.PASS, PASSWORD);
             settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
 
             settings.put(Environment.SHOW_SQL, "true");
-            settings.put(Environment.HBM2DDL_AUTO, "update");
 
             conf.setProperties(settings);
 
