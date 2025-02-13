@@ -23,12 +23,5 @@ public class Main {
         userService.cleanUsersTable();
 
         userService.dropUsersTable();
-
-        users = userService.getAllUsers();
-        if (users.isEmpty()) {
-            System.out.println("Таблица пользователей пуста или не существует.");
-        } else {
-            users.forEach(System.out::println);
-        }
     }
 }
